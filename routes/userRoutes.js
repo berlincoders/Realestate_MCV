@@ -1,10 +1,9 @@
 import express from "express";
+import { loginForm } from "../controllers/userController.js";
 
 const router = express.Router();
 //Routing  (Endpoint)
 
-router.get('/',function (req,res) {
-  res.render('auth/login')
-});
+router.get('/login',loginForm)
 
 export default router;
