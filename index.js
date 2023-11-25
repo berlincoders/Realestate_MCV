@@ -10,7 +10,7 @@ app.set('view engine','pug')
 app.set('views','./views')
 
 //Public folder
-app.use(express.static('./public'));
+app.use(express.static('public'))
 
 
 
