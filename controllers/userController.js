@@ -5,7 +5,7 @@ const loginForm = (req,res) => {
 }
 const signinForm = (req,res) => {
   res.render('auth/signin',{
-
+    page: 'Please Sign in'
   })
 }
 
