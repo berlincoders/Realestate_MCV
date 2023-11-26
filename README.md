@@ -1,6 +1,6 @@
 # Realestate_MVC
 
-Realestate_MVC is a real estate agency of the monolithic type, employing the following technologies:
+Realestate_MVC is a real estate  monolithic 
 
 - Express
 - MySQL
