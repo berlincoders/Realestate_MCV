@@ -8,6 +8,16 @@ block content
 
     div.mt-8.mx-auto.max-w-md
       .bg-white.py-8.px-4.shadow
-        form
-          div
-            label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold Your Name
+        form.space-y-5
+            div
+              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="name") Your Name
+              input#name.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Your Name" type="text" name="name")
+            div
+              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Email
+              input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Your email" type="email" name="email")
+            div
+              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") password
+              input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Your password" type="password" name="password")
+            div
+              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="confirm_password") Confirm Password"
+              input#confirm_password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Confirm Password" type="password" name="confirm_password")
