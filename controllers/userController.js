@@ -15,6 +15,7 @@ const register = async (req,res) => {
 
   //validation
   await check('name').notEmpty().withMessage('Required field').run(req)
+  await check('email').isEmail().withMessage('it must be an email adress').run(req)
 
 
   let result = validationResult(req)
