@@ -1,23 +1,23 @@
 
 // to options , import sequelize , or import datatypes
-import { dataTypes } from Sequelize
+import { DataTypes } from 'Sequelize'
 import db from '../config/db.js'
 
 const User = db.define('users',{
   name: {
-      type: dataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
   },
   email: {
-      type: dataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
   },
   password:{
-      type: dataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
   },
-  token: dataTypes.STRING,
-  confirm: dataTypes. BOOLEAN,
+  token: DataTypes.STRING,
+  confirm: DataTypes. BOOLEAN,
 });
 
 export default User;

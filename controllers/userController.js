@@ -1,3 +1,4 @@
+import User from '../models/User.js';
 
 const loginForm = (req,res) => {
   res.render('auth/login',{
@@ -9,9 +10,11 @@ const signinForm = (req,res) => {
     page: 'Please Sign in'
   })
 }
-const register = (req,res) => {
+const register = async (req,res) => {
 
-  console.log(req.body)
+  const user = await User.create(req.body)
+
+  res.json(user)
 
 }
 
