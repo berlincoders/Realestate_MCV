@@ -11,7 +11,7 @@ const signinForm = (req,res) => {
 }
 const register = (req,res) => {
 
-  console.log('registering...') 
+  console.log(req.body)
 
 }
 

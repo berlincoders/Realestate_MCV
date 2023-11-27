@@ -6,6 +6,9 @@ import db from "./config/db.js"
 // create the App
 const app = express()
 
+//Allows to read  data from form fields
+
+app.use(express.urlencoded({extended: true}))
 // db conexion
 
 try {
