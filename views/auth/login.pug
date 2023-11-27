@@ -5,19 +5,15 @@ block content
     h1.text-4xl.my-10.font-extrabold.text-center Real
       span.font-normal estate
     h2.text-center.text-2xl.font-extrabold= page
-
     div.mt-8.mx-auto.max-w-md
       .bg-white.py-8.px-4.shadow
-        form.space-y-5
-            div
-              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Email
-              input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Your email" type="email" name="email")
-            div
-              label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") password
-              input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder= "Your password" type="password" name="password")
+        form(class="space-y-5", method="POST", action="/auth/signin")
+          div
+            label.block.tetx-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Email
+            input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Your email", type="email", name="email")
 
-            div.flex.items-center.justify-between
-              a.text-gray-500.text-tx(href="/auth/signin") You do not have an account?
-              a.text-gray-500.text-tx(href="/auth/reset-password") forgot my password
+          div.flex.items-center.justify-between
+            a.text-gray-500.text-tx(href="/auth/signin") You do not have an account?
+            a.text-gray-500.text-tx(href="/auth/login") already have an account?
 
-            input( class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 cursor cursor-pointer" type="submit" value="Log in")
+          input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 cursor-pointer", type="submit", value="Reset Password")

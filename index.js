@@ -7,11 +7,12 @@ import db from "./config/db.js"
 const app = express()
 
 // db conexion
-try{
+
+try {
   await db.authenticate();
-  console.log("  conexion authenticated")
+  console.log('Connection has been established successfully.');
 } catch (error) {
-  console.log(error)
+  console.error('Unable to connect to the database:', error);
 }
 
 // Enable pug

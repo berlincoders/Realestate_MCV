@@ -1,3 +1,4 @@
+
 const loginForm = (req,res) => {
   res.render('auth/login',{
     page: 'Please Login'
@@ -8,6 +9,12 @@ const signinForm = (req,res) => {
     page: 'Please Sign in'
   })
 }
+const register = (req,res) => {
+
+  console.log('registering...') 
+
+}
+
 const resetPasswordForm = (req,res) => {
   res.render('auth/reset-password',{
     page: 'Please Reset Password'
@@ -17,5 +24,6 @@ const resetPasswordForm = (req,res) => {
 export {
     loginForm,
     signinForm,
+    register,
     resetPasswordForm
 }
