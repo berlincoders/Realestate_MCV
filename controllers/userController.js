@@ -71,6 +71,15 @@ await check('confirm_password')
     }
   })
  }
+
+// Save user
+await User.create({
+  name: req.body.name,
+  email: req.body.email,
+  password: req.body.password,
+  token: 123
+});
+
  console.log(userExists)
  return;
 
