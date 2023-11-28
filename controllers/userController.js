@@ -58,6 +58,23 @@ await check('confirm_password')
   }
 
 
+ // verify not  duplicate users
+
+ const userExists = await User.findOne({ where : {email : req.body.email}})
+ if (userExists) {
+    return res.render('auth/signin',{
+      page: 'Please Sign in',
+      errors:[{msg: 'The user already exists'}],
+      user: {
+        name: req.body.name,
+        email: req.body.email
+    }
+  })
+ }
+ console.log(userExists)
+ return;
+
+
   const user = await User.create(req.body)
 
   res.json(user)
