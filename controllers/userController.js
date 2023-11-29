@@ -1,5 +1,7 @@
 import {check, validationResult } from 'express-validator'
-import User from '../models/User.js';
+import User from '../models/User.js'
+import { generateId } from '../helpers/tokens.js'
+
 
 const loginForm = (req,res) => {
   res.render('auth/login',{
@@ -77,7 +79,7 @@ await User.create({
   name: req.body.name,
   email: req.body.email,
   password: req.body.password,
-  token: 123
+  token: generateId()
 });
 
  console.log(userExists)
