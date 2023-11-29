@@ -1,6 +1,7 @@
 import {check, validationResult } from 'express-validator'
 import User from '../models/User.js'
 import { generateId } from '../helpers/tokens.js'
+import { emailRecord } from '../helpers/emails.js'
 
 
 const loginForm = (req,res) => {
@@ -74,13 +75,22 @@ await check('confirm_password')
   })
  }
 
+
 // Save user
-await User.create({
+ const user = await User.create({
   name: req.body.name,
   email: req.body.email,
   password: req.body.password,
   token: generateId()
 });
+
+// send confirmation email
+emailRecord ({
+  name: user.name,
+  email: user.email,
+  token: user.token
+})
+
 
  // show confirmation message
  res.render('templates/message',{
