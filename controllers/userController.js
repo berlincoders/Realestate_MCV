@@ -82,16 +82,13 @@ await User.create({
   token: generateId()
 });
 
- console.log(userExists)
- return;
-
-
-  const user = await User.create(req.body)
-
-  res.json(user)
+ // show confirmation message
+ res.render('templates/message',{
+  page: ' Your account has been successfully created',
+  message: 'We have sent you a confirmation email, click on the link.'
+ })
 
 }
-
 
 
 
