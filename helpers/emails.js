@@ -26,7 +26,7 @@ await transport.sendMail({
 
       <p> We just need to verify your email address before you can access RealEstate.com </p>
       <p> Verify your email address with the following link:
-      <a href=""> Confirm your account</a> </p>
+      <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/confirm/${token}"> Confirm your account</a> </p>
 
       <p> If you did not make this request then please ignore this email </p>
 

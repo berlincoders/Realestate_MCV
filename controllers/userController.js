@@ -99,6 +99,14 @@ emailRecord ({
  })
 
 }
+// function that checks if the user is valid
+const confirmUser = (req, res) => {
+ // next function 
+
+  const { token } = req.params;
+  console.log(token);
+
+}
 
 
 
@@ -106,5 +114,6 @@ export {
     loginForm,
     signinForm,
     register,
+    confirmUser,
     resetPasswordForm
 }
