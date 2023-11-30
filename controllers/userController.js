@@ -114,9 +114,19 @@ const confirmUser = async (req, res) => {
         message: 'couldn not verify this account belongs to you. Try again later',
         error: true
       })
-  // confirm the account
+    }
+
+    // confirm the account
+    user.token = null;
+    user.confirm = true;
+    await user.save();
+
+    res.render('auth/confirm-account',{
+        page: ' Account has been confirmed',
+        message: 'the account has been confirmed correctly'
+    })
+
 }
-  }
 
   export {
     loginForm,
