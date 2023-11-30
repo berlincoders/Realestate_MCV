@@ -93,27 +93,35 @@ emailRecord ({
 
 
  // show confirmation message
- res.render('templates/message',{
+res.render('templates/message',{
   page: ' Your account has been successfully created',
   message: 'We have sent you a confirmation email, click on the link.'
- })
+})
 
 }
 // function that checks if the user is valid
-const confirmUser = (req, res) => {
- // next function 
+const confirmUser = async (req, res) => {
 
   const { token } = req.params;
   console.log(token);
 
+  // verify if the oken is valid
+
+  const user = await User.findOne({ where: {token}})
+    if (!user) {
+      return  res.render('auth/confirm-account',{
+        page: ' We are sorry, we could not confirm it is you',
+        message: 'couldn not verify this account belongs to you. Try again later',
+        error: true
+      })
+  // confirm the account
 }
+  }
 
-
-
-export {
+  export {
     loginForm,
     signinForm,
     register,
     confirmUser,
     resetPasswordForm
-}
+  };
