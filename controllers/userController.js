@@ -1,7 +1,7 @@
 import {check, validationResult } from 'express-validator'
 import User from '../models/User.js'
 import { generateId } from '../helpers/tokens.js'
-import { emailRecord } from '../helpers/emails.js'
+import { emailRecord,emailForgotpassword } from '../helpers/emails.js'
 
 
 const loginForm = (req,res) => {
@@ -166,7 +166,31 @@ const resetPassword = async (req,res) => {
       }
 
       // Generate a token , and send the email
-      
+      user.token = generateId();
+      await user.save();
+
+      // Send an email to the user
+      emailForgotpassword({
+        email: user.email,
+        name: user.name,
+        token: user.token
+
+      })
+
+      // Render a message, informing the user to check their email
+      res.render('templates/message',{
+        page: ' Reset your password',
+        message: 'We have sent you an email with instructions'
+      })
+
+}
+
+const checkToken = (req, res, next) => {
+  next();
+
+}
+const newPassword = (req, res) => {
+
 
 }
 
@@ -176,5 +200,7 @@ const resetPassword = async (req,res) => {
     register,
     confirmUser,
     resetPasswordForm,
-    resetPassword
+    resetPassword,
+    checkToken,
+    newPassword
   };
