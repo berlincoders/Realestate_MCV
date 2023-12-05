@@ -1,5 +1,5 @@
 import express from "express";
-import { loginForm,signinForm,register,confirmUser,resetPasswordForm } from "../controllers/userController.js";
+import { loginForm,signinForm,register,confirmUser,resetPasswordForm,resetPassword } from "../controllers/userController.js";
 
 const router = express.Router();
 //Routing  (Endpoint)
@@ -11,6 +11,7 @@ router.post('/signin',register);   //Signin endpoint
 router.get('/confirm/:token',confirmUser); // Confirm endpoint, & dinamic routing
 
 router.get('/reset-password',resetPasswordForm);   // reset password endpoint
+router.post('/reset-password',resetPassword);
 
 
 export default router;

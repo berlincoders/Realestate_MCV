@@ -17,11 +17,8 @@ const signinForm = (req,res) => {
     csrfToken: req.csrfToken()
   })
 }
-const resetPasswordForm = (req,res) => {
-  res.render('auth/reset-password',{
-    page: 'Please Reset Password'
-  })
-}
+
+
 
 // create a new recod
 const register = async (req,res) => {
@@ -132,10 +129,37 @@ const confirmUser = async (req, res) => {
 
 }
 
+const resetPasswordForm = (req,res) => {
+  res.render('auth/reset-password',{
+    page: 'Please Reset Password',
+    csrfToken: req.csrfToken(),
+  })
+}
+
+const resetPassword = async (req,res) => {
+// Validation
+  await check('email').isEmail().withMessage('Please enter a valid email address').run(req);
+
+    let result = validationResult(req)
+
+    // verify the result is empty.
+    if (!result.isEmpty()) {
+  // if result it is not empty, means that there are some errors
+        return res.render('auth/reset-password',{
+          page: 'Please Reset Password',
+          csrfToken: req.csrfToken(),
+          errors: result.array()
+        })
+    }
+
+    // Search for the user
+}
+
   export {
     loginForm,
     signinForm,
     register,
     confirmUser,
-    resetPasswordForm
+    resetPasswordForm,
+    resetPassword
   };
