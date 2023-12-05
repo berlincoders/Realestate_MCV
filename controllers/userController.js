@@ -153,6 +153,21 @@ const resetPassword = async (req,res) => {
     }
 
     // Search for the user
+
+    const {email} = req.body
+
+    const user = await User.findOne({ where: {email}})
+      if (!user) {
+        return res.render('auth/reset-password',{
+          page: 'Please Reset Password',
+          csrfToken: req.csrfToken(),
+          errors: [{msg:'These email  do not belong to any user in the current account' }]
+        })
+      }
+
+      // Generate a token , and send the email
+      
+
 }
 
   export {
