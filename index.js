@@ -1,7 +1,10 @@
 
 import express from 'express'  //ESModule
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 import userRoutes from "./routes/userRoutes.js"
 import db from "./config/db.js"
+import { cookie } from 'express-validator'
 
 // create the App
 const app = express()
@@ -9,6 +12,13 @@ const app = express()
 //Allows to read  data from form fields
 
 app.use(express.urlencoded({extended: true}))
+
+// Allows Cookie parxer
+app.use(cookieParser())
+
+// Allows CSRF protection
+app.use(csrf({cookie:true}))
+
 // db conexion
 
 try {

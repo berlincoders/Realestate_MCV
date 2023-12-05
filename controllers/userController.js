@@ -10,9 +10,11 @@ const loginForm = (req,res) => {
   })
 }
 const signinForm = (req,res) => {
+
   res.render('auth/signin',{
     page: 'Please Sign in',
-    user: {} // Ensure that the user object is defined, even if it's empty
+    user: {}, // Ensure that the user object is defined, even if it's empty
+    csrfToken: req.csrfToken()
   })
 }
 const resetPasswordForm = (req,res) => {
@@ -52,6 +54,7 @@ await check('confirm_password')
 // if result it is not empty, means that there are some errors
       return res.render('auth/signin',{
         page: 'Please Sign in',
+        csrfToken: req.csrfToken(),
         errors: result.array(),
         user: {
           name: req.body.name,
@@ -67,6 +70,7 @@ await check('confirm_password')
  if (userExists) {
     return res.render('auth/signin',{
       page: 'Please Sign in',
+      csrfToken: req.csrfToken(),
       errors:[{msg: 'The user already exists'}],
       user: {
         name: req.body.name,
