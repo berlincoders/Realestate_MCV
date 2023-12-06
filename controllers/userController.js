@@ -185,12 +185,25 @@ const resetPassword = async (req,res) => {
 
 }
 
-const checkToken = (req, res, next) => {
-  next();
+const checkToken =  async (req, res) => {
+
+  const{ token } = req.params;   // Apply destructuring assignment
+
+  const user = await User.findOne({ where: {token}});
+      if (!user) {
+        return  res.render('auth/confirm-account',{
+          page: ' Reset your password',
+          message: 'couldn not verify this information, try again later',
+          error: true
+        })
+      }
+    //show form to modify the password
+    
+
+
 
 }
 const newPassword = (req, res) => {
-
 
 }
 
