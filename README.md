@@ -3,7 +3,7 @@
 Realestate_MVC is a real estate  monolithic 
 - MVC (Model-View-Controller)
 
-- Realestate is using nodemailer, and im validating the emails with  Mailtrap sandbox.
+- Realestate is using nodemailer, and im validating the emails with  Mailtrap sandbox. <br>
    Mailtrap is crucial to confirm and check the user journey.
 
 Dependencies
