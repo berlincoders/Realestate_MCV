@@ -198,12 +198,18 @@ const checkToken =  async (req, res) => {
         })
       }
     //show form to modify the password
-    
+    res.render('auth/reset-pass',{
+      page:' Reset your password',
+      csrfToken: req.csrfToken()
+
+    })
 
 
 
 }
 const newPassword = (req, res) => {
+
+  console.log('Saving password..');
 
 }
 
