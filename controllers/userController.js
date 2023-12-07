@@ -1,4 +1,5 @@
 import {check, validationResult } from 'express-validator'
+import bcrypt from 'bcrypt'
 import User from '../models/User.js'
 import { generateId } from '../helpers/tokens.js'
 import { emailRecord,emailForgotpassword } from '../helpers/emails.js'
@@ -204,15 +205,45 @@ const checkToken =  async (req, res) => {
 
     })
 
+}
+const newPassword = async (req, res) => {
 
+   // validate the password
+    await check('password')
+    .isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+    .matches(/\d/).withMessage('Password must contain a number') // Add any additional password requirements here
+    .run(req);
+    let result = validationResult(req)
+
+      // verify the result is empty.
+    if (!result.isEmpty()) {
+    // if result it is not empty, means that there are some errors
+          return res.render('auth/reset-pass',{
+            page: 'Please Reset your Password',
+            csrfToken: req.csrfToken(),
+            errors: result.array()
+          })
+    }
+    const { token } = req.params
+    const { password } = req.body;
+   // identify the user
+  const user = await User.findOne({ where: {token}})
+
+   // hash the new password
+    const salt = await bcrypt.genSalt(10)
+    user.password = await bcrypt.hash(password, salt);
+    user.token = null;
+
+    await user.save();
+
+    res.render('auth/confirm-account',{
+      page: 'Password reset successfuly',
+      message:'Password reset successfully',
+
+
+    })
 
 }
-const newPassword = (req, res) => {
-
-  console.log('Saving password..');
-
-}
-
   export {
     loginForm,
     signinForm,
