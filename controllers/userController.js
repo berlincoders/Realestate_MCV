@@ -47,7 +47,14 @@ const authenticate = async(req, res) => {
           errors: [{msg:'The Account it is not confirmed'}]
         })
     }
-
+    // review the password
+    if(!user.verifyPassword(password)){
+        return res.render('auth/login',{
+          page: 'Please Login',
+          csrfToken: req.csrfToken(),
+          errors: [{msg:'The Password in not correct'}]
+        })
+    }
 }
 
 const signinForm = (req,res) => {
