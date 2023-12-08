@@ -29,6 +29,24 @@ const authenticate = async(req, res) => {
           errors: result.array()
         })
     }
+    const {email, password} = req.body // remeber the body is the body of the POST, the user send.
+    // check if the user exists
+    const user = await User.findOne({ where: {email}})
+    if (!user){
+        return res.render('auth/login',{
+          page: 'Please Login',
+          csrfToken: req.csrfToken(),
+          errors: [{msg:'The User Does not exist'}]
+        })
+    }
+    // check if the user is confirmed
+    if (!user.confirm){
+        return res.render('auth/login',{
+          page: 'Please Login',
+          csrfToken: req.csrfToken(),
+          errors: [{msg:'The Account it is not confirmed'}]
+        })
+    }
 
 }
 
