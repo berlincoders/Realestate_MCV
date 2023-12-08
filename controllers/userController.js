@@ -7,9 +7,31 @@ import { emailRecord,emailForgotpassword } from '../helpers/emails.js'
 
 const loginForm = (req,res) => {
   res.render('auth/login',{
-    page: 'Please Login'
+    page: 'Please Login',
+    csrfToken: req.csrfToken()
   })
 }
+const authenticate = async(req, res) => {
+
+  //validation
+  await check('email').isEmail().withMessage('the email cannot be empty').run(req);
+  await check('password').notEmpty().withMessage('The password cannot be empty').run(req);
+
+  let result = validationResult(req)
+  // return res.json({errors: result.array()})
+
+    // verify the result is empty.
+    if (!result.isEmpty()) {
+  // if result it is not empty, means that there are some errors
+        return res.render('auth/login',{
+          page: 'Please Login',
+          csrfToken: req.csrfToken(),
+          errors: result.array()
+        })
+    }
+
+}
+
 const signinForm = (req,res) => {
 
   res.render('auth/signin',{
@@ -18,7 +40,6 @@ const signinForm = (req,res) => {
     csrfToken: req.csrfToken()
   })
 }
-
 
 
 // create a new recod
@@ -43,8 +64,6 @@ await check('confirm_password')
   .run(req);
 
   let result = validationResult(req)
-
-
  // return res.json({errors: result.array()})
 
   // verify the result is empty.
@@ -246,6 +265,7 @@ const newPassword = async (req, res) => {
 }
   export {
     loginForm,
+    authenticate,
     signinForm,
     register,
     confirmUser,
