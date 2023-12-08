@@ -1,5 +1,6 @@
 import {check, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { generateId } from '../helpers/tokens.js'
 import { emailRecord,emailForgotpassword } from '../helpers/emails.js'
@@ -55,6 +56,17 @@ const authenticate = async(req, res) => {
           errors: [{msg:'The Password in not correct'}]
         })
     }
+    //autentify the user, create a JWT (jsonwebtoken)
+
+    const token = jwt.sign({
+      name:'Romeo',
+      company:'lewagon',
+      tecnology:'node.js'
+    }, "Secretword",{
+      expiresIn: '1d'
+    })
+    console.log(token)
+
 }
 
 const signinForm = (req,res) => {
