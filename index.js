@@ -3,6 +3,8 @@ import express from 'express'  //ESModule
 import csrf from 'csurf'
 import cookieParser from 'cookie-parser'
 import userRoutes from "./routes/userRoutes.js"
+import propiertiesRoutes from "./routes/propertiesRoutes.js"
+
 import db from "./config/db.js"
 import { cookie } from 'express-validator'
 
@@ -40,6 +42,9 @@ app.use(express.static('public'))
 
 //Routing  midelware routes
 app.use('/auth', userRoutes)
+app.use('/', propiertiesRoutes)
+
+
 
 // Define the port and run the server
 const port = process.env.PORT || 3000;

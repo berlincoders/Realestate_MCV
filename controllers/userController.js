@@ -66,7 +66,7 @@ const authenticate = async(req, res) => {
       httpOnly: true,
       //secure: true,
       //sameSite: true
-    }).redirect('/my-propieties')
+    }).redirect('/my-properties')
 
 }
 
