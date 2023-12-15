@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/login',loginForm);   //login endpoint
 router.post('/login',authenticate);   //login endpoint
 
+router.get('/sign-in-form',signinForm); //signin endpoint
 router.get('/signin',signinForm);   //Signin endpoint
 router.post('/signin',register);   //Signin endpoint
 router.get('/confirm/:token',confirmUser); // Confirm endpoint, & dinamic routing

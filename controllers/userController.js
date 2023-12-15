@@ -57,8 +57,16 @@ const authenticate = async(req, res) => {
     }
     //autentify the user, create a JWT (jsonwebtoken)
 
-    const token = generateJWT(user.id)
+    const token = generateJWT({id: user.id, name: user.name})
     console.log(token)
+
+    // add the token to a cookie
+    return res.cookie('_token',token,{
+
+      httpOnly: true,
+      //secure: true,
+      //sameSite: true
+    }).redirect('/my-propieties')
 
 }
 
