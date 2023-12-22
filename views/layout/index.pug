@@ -5,7 +5,9 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Real Estate | #{page}
     link(rel="stylesheet", href="/css/app.css")
-    block styles 
+    block styles
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" integrity="sha512-xodc4q0EJsz9aXO7cHXSge3HF3U6PlMe+4j5z2d22cz/LntXpsCEZzi2wV5ngBuIKeNtCimkzguky1r9iGi4Ig==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" integrity="sha512-/tsvZ5yEGS/gpgB4VUu3s2Jr+I2aJhgZz3N/BL5sCOSidBPTW0YiCUjC72g9v8ntfOFypu7+l74YDb+4d8P7LQ==" crossorigin=""></script>
   body.min-h-screen.bg-gray-50
     if barr
         include header
