@@ -560,6 +560,9 @@ video {
 .h-10 {
   height: 2.5rem;
 }
+.h-96 {
+  height: 24rem;
+}
 .min-h-full {
   min-height: 100%;
 }
