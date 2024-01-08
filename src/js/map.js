@@ -25,6 +25,7 @@
     marker = event.target
 
     const position = marker.getLatLng();
+    console.log(position);
     mapa.panTo(new L.LatLng(position.lat, position.lng));
 
     // get the information of the street, when we drop the marker
@@ -32,6 +33,14 @@
       // console.log(resultado)
 
       marker.bindPopup(result.address.LongLabel)
+
+      // fill out the ddbb
+      document.querySelector('.street').textContent = result?.address?.Address ?? '';
+      document.querySelector('#streat').value = result?.address?.Address ?? '';
+      document.querySelector('#lat').value = result?.latlng?.lat ?? '';
+      document.querySelector('#lng').value = result?.latlng?.lng ?? '';
+
+
 
     })
 
